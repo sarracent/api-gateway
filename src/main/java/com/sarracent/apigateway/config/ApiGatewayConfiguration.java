@@ -11,10 +11,14 @@ public class ApiGatewayConfiguration {
     @Bean
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/students/**")
+                .route(r -> r.path("/auth/register")
                         .uri("http://localhost:8081"))
-                .route(r -> r.path("/courses/**")
-                                .uri("http://localhost:8082"))
+                .route(r -> r.path("/auth/token")
+                        .uri("http://localhost:8081"))
+                .route(r -> r.path("/auth/validate/**")
+                        .uri("http://localhost:8081"))
+                .route(r -> r.path("/api/prices/**")
+                        .uri("http://localhost:8080"))
                 .build();
     }
 }
